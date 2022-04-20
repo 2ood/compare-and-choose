@@ -1,0 +1,117 @@
+:root {
+  --primary : orange;
+  --secondary : white;
+}
+
+
+* {
+  padding :0;
+  margin : 0;
+  box-sizing: border-box;
+  font-family: 'Akshar', sans-serif;
+  font-size: 18px;
+}
+
+body {
+  height : 100vh;
+  width : 100vw;
+  display : flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  position: absolute;
+  top : 0;
+  right : 0;
+  left : 0;
+  height : 60px;
+  display : flex;
+}
+
+nav step {
+  color : var(--primary);
+  width : 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items : center;
+  transition: all .3s ease-in-out;
+}
+
+
+nav step.active {
+  background-color: var(--primary);
+  color : var(--secondary);
+}
+
+form-container {
+    width : 60%;
+    display :inline-block;
+    height : 60%;
+    position : relative;
+    overflow-y: visible;
+}
+
+form {
+  position : absolute;
+  top : 100%;
+  left : 0;
+  display: inline-block;
+  height : 100%;
+  width : 100%;
+  opacity : 0;
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+form.active {
+  opacity:1;
+  top : 0;
+}
+
+form.passed {
+  transition: all .3s ease-in-out;
+  opacity : 0;
+  top : -100%;
+}
+
+
+form label {
+  display: block;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+form input,form select {
+  border : none;
+  border-bottom : 3px #33333311 solid;
+  height : 3em;
+  width : 60%;
+  outline: none;
+}
+
+form .button-container {
+  margin-top : 20px;
+  display : flex;
+  height : 50px;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+form .button-container button {
+  height : 100%;
+  width : 60%;
+  border : 3px var(--primary) solid;
+  background-color: var(--secondary);
+  color : var(--primary);
+  padding : 0 30px;
+  border-radius: 5px;
+}
+
+form.passed .button-container button {
+  border : none;
+  background-color: var(--primary);
+  color : var(--secondary);
+  cursor : pointer;
+}

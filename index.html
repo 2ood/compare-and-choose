@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compare and Choose</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akshar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav id="form-steps">
+      <step class="active">1st</step>
+      <step>2nd</step>
+    </nav>
+    <form-container>
+      <form id="name-form" class="active">
+        <label for="name">What is the topic?</label>
+        <input id="name" type ="text" placeholder="type in the title"></input>
+        <div class="button-container">
+          <button type="button" id="to-second">Next</button>
+        </div>
+      </form>
+
+      <form id="pivacy-form">
+        <label for="privacy-setting">Do you want to make it public, or private?</label>
+        <select id = "privacy-setting">
+          <option value="public">public</option>
+          <option value="semi">only open to shared</option>
+          <option value="private">private</option>
+        </select>
+        <div class="button-container">
+          <button type="button" id="to-first">Back</button>
+          <button type="button" class="active" id="submit">Submit</button>
+        </div>
+      </form>
+    </form-container>
+  <script src="script.js"></script>
+  </body>
+</html>
