@@ -28,3 +28,24 @@ submit.addEventListener("click",()=>{
 
 steps[0].addEventListener("click",()=>{to_first_button.click();});
 steps[1].addEventListener("click",()=>{to_second_button.click();});
+
+const name_input = document.getElementById("name");
+name_input.addEventListener("input",(evt)=>{
+  const src = evt.srcElement;
+  if(src.value=="") {
+    src.parentNode.classList.remove("passing");
+    return ;
+  }
+
+  if(true) { //check if there's dubplicate name in db.
+    src.parentNode.classList.add("passing");
+  }
+});
+
+const privacy_select = document.getElementById("privacy-setting");
+privacy_select.addEventListener("change",(evt)=>{
+  const src = evt.srcElement;
+  if(true) { //check if all steps are passing.
+    src.parentNode.classList.add("passing");
+  }
+},false);
