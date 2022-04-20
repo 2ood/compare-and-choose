@@ -13,8 +13,10 @@ to_first_button.addEventListener("click",()=>{
   steps[0].classList.add("active");
   steps[1].classList.remove("active");
 });
+
 to_second_button.addEventListener("click",()=>{
-  forms[0].classList.add("passed");
+  if(forms[0].classList.contains("passing"))forms[0].classList.add("passed");
+  forms[1].classList.remove("passed");
   forms[0].classList.remove("active");
   forms[1].classList.add("active");
 
@@ -24,9 +26,13 @@ to_second_button.addEventListener("click",()=>{
 
 submit.addEventListener("click",()=>{
   forms[1].classList.add("passed");
+  forms[1].classList.remove("active");
 });
 
-steps[0].addEventListener("click",()=>{to_first_button.click();});
+steps[0].addEventListener("click",()=>{
+  to_first_button.click();
+});
+
 steps[1].addEventListener("click",()=>{to_second_button.click();});
 
 const name_input = document.getElementById("name");
