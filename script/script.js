@@ -59,7 +59,7 @@ class Item {
 }
 
 class Table {
-  constructor(target, title, id, row, items) {
+  constructor(target=document.querySelector("table tbody:first-of-type"), title="untitled", id, row=[], items=[]) {
     this.target = target;
     this.title = title;
     this.id = id;
@@ -114,7 +114,7 @@ fs.collection('doc').doc('testdoc').get().then((querySnapshot)=>{
 });
 
 const table_dom = document.querySelector("#main-table tbody");
-const table = new Table(table_dom, json.title,json.id,json.row,[]);
+const table = new Table(table_dom, json.title,json.id,json.row);
 
 const items = json.items;
 items.forEach(function(item) {
