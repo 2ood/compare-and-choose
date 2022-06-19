@@ -1,0 +1,84 @@
+body {
+    background-color: beige;
+}
+main {
+  position: relative;
+  justify-content: center;
+  padding-bottom: 30px;
+  padding-right: 30px;
+}
+
+table {
+  display : flex;
+  background-color: white;
+}
+
+tr {
+  height : 30px;
+}
+
+th {
+  min-width : 100px;
+  background-color: #33333333;
+}
+
+td, th {
+  min-height : 100%;
+  min-width : 150px;
+  max-width : 200px;
+  text-align : center;
+  height :fit-content;
+}
+
+td.focus, th.focus {
+  outline : 2px skyblue solid;
+}
+
+td > img {
+  width : 180px;
+  margin : auto 0;
+}
+
+#add-column {
+  position : absolute;
+  display : flex;
+  align-items: center;
+  justify-content: center;
+  right : 0;
+  top : 0;
+  height: calc(100% - 30px);
+  width : 30px;
+}
+
+#add-row {
+  position : absolute;
+  display : flex;
+  bottom : 0;
+  width : calc(100% - 30px);
+  height : 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+#add-row-and-column {
+  position : absolute;
+  display : flex;
+  bottom : 0;
+  right : 0;
+  width : 30px;
+  height : 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modify-table:hover {
+  opacity : 1;
+  transition : all .3s ease-in-out;
+}
+
+.modify-table {
+  opacity : 0;
+  background-color: #33333333;
+  transition : all .3s ease-in-out;
+  cursor : pointer;
+}
