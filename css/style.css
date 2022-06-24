@@ -8,6 +8,14 @@ main {
   padding-right: 30px;
 }
 
+
+#sync {
+  display: inline-block;
+  position: fixed;
+  top : 20px;
+  right : 20px;
+}
+
 table {
   display : flex;
   background-color: white;

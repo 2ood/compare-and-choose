@@ -24,13 +24,13 @@ class Item {
 
   static clone(datatype) {
     switch(datatype) {
-      case Item.types.text: return new TextItem("");
-      case Item.types.image: return new ImageItem("");
-      case Item.types.date: return new DateItem("");
-      case Item.types.star: return new StarItem("");
-      case Item.types.percent: return new PercentItem("");
-      case Item.types.integer: return new IntegerItem("");
-      case Item.types.price: return new PriceItem("");
+      case "text": return new TextItem("");
+      case "image": return new ImageItem("");
+      case "date": return new DateItem("");
+      case "star": return new StarItem("");
+      case "percent": return new PercentItem("");
+      case "integer": return new IntegerItem("");
+      case "price": return new PriceItem("");
     }
   }
 }
@@ -41,6 +41,10 @@ class TextItem extends Item {
     this.value = text;
     }
 
+  setValue(value) {
+    this.value =value;
+  }
+
   toHTML() {
     return this.value;
   }
@@ -49,6 +53,9 @@ class TextItem extends Item {
 class ImageItem extends Item {
   constructor(value){
     super(Item.types.image);
+    this.value = value;
+  }
+  setValue(value) {
     this.value = value;
   }
   toHTML() {
@@ -61,6 +68,9 @@ class DateItem extends Item {
     super(Item.types.date);
     this.value = value;
   }
+  setValue(value) {
+    this.value =value;
+  }
   toHTML() {
     return this.value;
   }
@@ -70,6 +80,9 @@ class StarItem extends Item {
   constructor(value){
     super(Item.types.star);
     this.value = value;
+  }
+  setValue(value) {
+    this.value =value;
   }
   toHTML() {
     return this.value;
@@ -81,6 +94,9 @@ class IntegerItem extends Item {
     super(Item.types.integer);
     this.value = value;
   }
+  setValue(value) {
+    this.value =value;
+  }
   toHTML() {
     return this.value;
   }
@@ -90,6 +106,9 @@ class PercentItem extends Item {
   constructor(value){
     super(Item.types.percent);
     this.value = value;
+  }
+  setValue(value) {
+    this.value =value;
   }
   toHTML() {
     return `${this.value}%`;
@@ -102,56 +121,25 @@ class PriceItem extends Item {
     this.currency = currency;
     this.value = value;
   }
+  setValue(value) {
+    this.value =value;
+  }
+
+  setCurrency(currency){
+    this.currency = currency;
+  }
   toHTML() {
-    return `${this.value} ${this.currency}`;
+    return `${this.value}`;
   }
 }
 
-const json  = {
-  "title" : "sample title",
-  "id" : "1234",
-  "row" : ["img","href","price","star"],
-  "datatype" :{
-    "img" : Item.types.image,
-    "href" : Item.types.text,
-    "price" : Item.types.price,
-    "star" : Item.types.star
-  },
-  "items" : [
-    {
-      "img" : new ImageItem("../src/simpson.jpeg"),
-      "href" : new TextItem("www.github.com/2ood"),
-      "star" : new StarItem(1),
-      "price" : new PriceItem(10000)
-    },
-    {
-      "img" : new ImageItem("../src/simpson.jpeg"),
-      "href" : new TextItem("www.github.com/2ood"),
-      "star" : new StarItem(2),
-      "price" : new PriceItem(20000)
-    },{
-      "img" : new ImageItem("../src/simpson.jpeg"),
-      "href" : new TextItem("www.github.com/2ood"),
-      "star" : new StarItem(3),
-      "price" : new PriceItem(30000)
-    },{
-      "img" : new ImageItem("../src/simpson.jpeg"),
-      "href" : new TextItem("www.github.com/2ood"),
-      "star" : new StarItem(4),
-      "price" : new PriceItem(40000)
-    }
-  ]
-};
-
-
-
-
 
 class Table {
-  constructor(target=document.querySelector("table tbody:first-of-type"), title="untitled", id, row=[], items=[]) {
+  constructor(target=document.querySelector("table tbody:first-of-type"), title="untitled",id, datatype, row=[], items=[]) {
     this.target = target;
     this.title = title;
     this.id = id;
+    this.datatype = datatype;
     this.row = row;
     this.items = items;
   }
@@ -271,6 +259,7 @@ class Table {
 
   addRow(rowHeader, datatype) {
     this.row.push(rowHeader);
+    this.datatype[rowHeader] = datatype;
     this.items.forEach(function(item){
       item[rowHeader] = Item.clone(datatype);
     });
@@ -301,6 +290,7 @@ class Table {
     const newJson  = {
       "title" : this.title,
       "id" : this.id,
+      "datatype" : this.datatype,
     };
     const rows = [].slice.call(this.target.getElementsByTagName("TR"));
     const columnNum = [].slice.call(rows[0].children).length-1;
@@ -323,6 +313,41 @@ class Table {
     return newJson;
   }
 }
+let json  = {
+  "title" : "sample title",
+  "id" : "1234",
+  "row" : ["img","href","price","star"],
+  "datatype" :{
+    "img" : "image",
+    "href" : "text",
+    "price" : "price",
+    "star" : "star"
+  },
+  "items" : [
+    {
+      "img" : new ImageItem("../src/simpson.jpeg"),
+      "href" : new TextItem("www.github.com/2ood"),
+      "star" : new StarItem(1),
+      "price" : new PriceItem(10000)
+    },
+    {
+      "img" : new ImageItem("../src/simpson.jpeg"),
+      "href" : new TextItem("www.github.com/2ood"),
+      "star" : new StarItem(2),
+      "price" : new PriceItem(20000)
+    },{
+      "img" : new ImageItem("../src/simpson.jpeg"),
+      "href" : new TextItem("www.github.com/2ood"),
+      "star" : new StarItem(3),
+      "price" : new PriceItem(30000)
+    },{
+      "img" : new ImageItem("../src/simpson.jpeg"),
+      "href" : new TextItem("www.github.com/2ood"),
+      "star" : new StarItem(4),
+      "price" : new PriceItem(40000)
+    }
+  ]
+};
 
 const firebaseConfig = {
   apiKey: "AIzaSyBCifis8BI-erbAj0dJdcwZnTwcQMk2s7o",
@@ -337,17 +362,23 @@ const app = firebase.initializeApp(firebaseConfig);
 const fs = app.firestore();
 
 
-fs.collection('doc').doc('testdoc').get().then((querySnapshot)=>{
-  //console.log(querySnapshot.data());
-});
+const params = new URLSearchParams(window.location.search);
+let id = params.has('id')?params.get('id'):'testdoc';
+console.log(id);
 
 const table_dom = document.querySelector("#main-table tbody");
-const table = new Table(table_dom, json.title,json.id,json.row,json.items);
+let table;
 
-table.renderColumnHeader();
-table.row.forEach(function (headerName){
-  table.renderRow(headerName);
+fs.collection('doc').doc(id).get().then((docRef)=>{
+  if(docRef.exists) json = compileRawJson(docRef.data());
+  table = new Table(table_dom, json.title,json.id,json.datatype,  json.row,json.items);
+
+  table.renderColumnHeader();
+  table.row.forEach(function (headerName){
+    table.renderRow(headerName);
+  });
 });
+
 
 const add_row_button = document.getElementById("add-row");
 const add_column_button = document.getElementById("add-column");
@@ -356,7 +387,7 @@ const add_both_button = document.getElementById("add-row-and-column");
 //TODO : ask type of new row data
 add_row_button.addEventListener("click",function (evt) {
   let rowHeader = prompt("Enter new row header", "");
-  if(rowHeader!=null && rowHeader!="") table.addRow(rowHeader,Item.types.text);
+  if(rowHeader!=null && rowHeader!="") table.addRow(rowHeader,"text");
 });
 add_column_button.addEventListener("click",function (evt){
   table.addColumn();
@@ -366,3 +397,42 @@ add_both_button.addEventListener("click",function(evt){
   add_row_button.click();
   add_column_button.click();
 });
+
+
+const sync_button = document.getElementById("sync");
+sync_button.addEventListener("click",function(evt) {
+  let updateJson = table.saveTabletoObject();
+  console.log(updateJson);
+  fs.collection('doc').doc(id).get().then((querySnapshot)=>{
+    if(querySnapshot.exists){
+      fs.collection('doc').doc(id).update(updateJson).then(()=>{
+        console.log("synced");
+      });
+    }
+    else {
+      fs.collection('doc').doc(id).set(updateJson).then(()=>{
+        console.log("created");
+      });
+    }
+  })
+
+});
+
+
+function compileRawJson(rawJson){
+  console.log(rawJson);
+  let datatypes = rawJson.datatype;
+  let newItems = [];
+  rawJson.items.forEach((item)=>{
+    let newItem={};
+    for(let key of Object.keys(item)){
+      let newInstance = Item.clone(datatypes[key]);
+      newInstance.setValue(item[key]);
+      newItem[key] = newInstance;
+    }
+    newItems.push(newItem);
+  });
+
+  rawJson.items = newItems;
+  return rawJson;
+}
