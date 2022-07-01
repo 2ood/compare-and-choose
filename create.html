@@ -7,8 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akshar&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/create.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/create.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
   </head>
   <body>
     <nav id="form-steps">
@@ -16,26 +20,32 @@
       <step>2nd</step>
     </nav>
     <form-container>
-      <form id="name-form" class="active">
+      <form id="name-form" class="stopped active">
         <label for="name">What is the topic?</label>
         <input id="name" type ="text" placeholder="type in the title"></input>
+        <validator id="name-validator" class="error"></validator>
         <div class="button-container">
-          <button type="button" id="to-second">Next</button>
+          <button type="button" class="validating" id="to-second">Next</button>
         </div>
       </form>
-      <form id="pivacy-form">
+      <form id="pivacy-form" class="stopped">
         <label for="privacy-setting">Do you want to make it public, or private?</label>
-        <select id = "privacy-setting">
+        <select id="privacy-setting">
+          <option value="" selected disabled hidden >choose...</option>
           <option value="public">public</option>
           <option value="semi">only open to shared</option>
           <option value="private">private</option>
         </select>
         <div class="button-container">
           <button type="button" class="independent" id="to-first">Back</button>
-          <button type="button" class="active" id="submit">Submit</button>
+          <button type="button" class="validating active" id="submit">Submit</button>
         </div>
       </form>
     </form-container>
-  <script src="../script/create.js"></script>
+    <curtain id="curtain">
+      <messagebox>
+      </messagebox>
+    </curtain>
+  <script src="script/create.js"></script>
   </body>
 </html>
