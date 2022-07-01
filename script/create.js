@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded",function(){
       ]
     };
 
-    firestore.collection('doc').doc(newId).set(json).then((){
+    firestore.collection('doc').doc(newId).set(json).then(()=>{
         messagebox.innerHTML = "Ready!";
         setTimeout(()=>{window.location.href=`https://2ood.github.io/compare-and-choose/index.html?id=${newId}`},1000);
     });
