@@ -31,6 +31,7 @@ class Item {
       case "percent": return new PercentItem("");
       case "integer": return new IntegerItem("");
       case "price": return new PriceItem("");
+      default : return new TextItem("");
     }
   }
 }
@@ -364,7 +365,6 @@ const fs = app.firestore();
 
 const params = new URLSearchParams(window.location.search);
 let id = params.has('id')?params.get('id'):'testdoc';
-console.log(id);
 
 const table_dom = document.querySelector("#main-table tbody");
 let table;
@@ -420,7 +420,6 @@ sync_button.addEventListener("click",function(evt) {
 
 
 function compileRawJson(rawJson){
-  console.log(rawJson);
   let datatypes = rawJson.datatype;
   let newItems = [];
   rawJson.items.forEach((item)=>{

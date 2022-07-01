@@ -36,6 +36,7 @@ td, th {
   max-width : 200px;
   text-align : center;
   height :fit-content;
+  overflow-wrap : break-word;
 }
 
 td.focus, th.focus {
